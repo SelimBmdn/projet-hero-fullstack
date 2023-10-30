@@ -7,6 +7,11 @@ import { useRouter } from 'next/navigation'
 
 const Searchbar = () => {
 
+    const [muscle, setMuscle] = useState('')
+    const [difficulty, setDifficulty] = useState('')
+
+    const router = useRouter()
+
     function formatDifficulty(input: string) {
         return input.charAt(0).toUpperCase() + input.slice(1)
     }
@@ -19,6 +24,38 @@ const Searchbar = () => {
             return firstLetter + restOfWord
         })
         return formatedWords.join(' ')
+    }
+
+    const handleSearch = () => {
+        if(difficulty.trim()=== "" && muscle.trim() === "" ) {
+            return alert('PLease provide some input')
+        }
+        alert(difficulty + muscle)
+
+        updateSearchParams(difficulty, muscle)
+
+    }
+
+    const updateSearchParams = (difficulty: string, muscle: string) => {
+        const searchParams = new URLSearchParams (window.location.search)
+
+        if(difficulty) {
+            searchParams.set('difficulty', difficulty)
+        }
+        else {
+            searchParams.delete('difficulty')
+        }
+
+        if(muscle) {
+            searchParams.set('muscle', muscle)
+        }
+        else {
+            searchParams.delete('muscle')
+        }
+
+        const newPathname = `${window.location.pathname}?${searchParams.toString()}`
+
+        router.push(newPathname)
     }
 
 
@@ -37,6 +74,8 @@ const Searchbar = () => {
                     mx=".5rem"
                     mb={['0.5rem', '0.5rem', '0.5rem', '0']}
                     bg='white'
+                    onChange={(e) => setDifficulty(e.target.value)}
+                    value={difficulty}
                 >
                     <option value="">None</option>
                     {difficulties.map(difficulty => (
@@ -50,6 +89,8 @@ const Searchbar = () => {
                     mx=".5rem"
                     mb={['0.5rem', '0.5rem', '0.5rem', '0']}
                     bg='white'
+                    onChange={(e) => setMuscle(e.target.value)}
+                    value={muscle}
                 >
                     <option value=''>None</option>
 
@@ -62,6 +103,7 @@ const Searchbar = () => {
                     mx="0.5rem"
                     width={['100%', '100%', '100%', '20%']}
                     colorScheme='messenger'
+                    onClick={handleSearch}
                 >
 
                     Search
