@@ -28,5 +28,6 @@ export default  async function Home({ searchParams } : HomeProps) {
       <Searchbar />
       <ExercisesList isDataEmpty={isDataEmpty} allExercises={allExercises} />
     </>
+    
   )
 }
