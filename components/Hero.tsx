@@ -34,8 +34,9 @@ const Hero = () => {
                 <Button mt='1rem' colorScheme='messenger'>Search exercises</Button>
             </Link>
 
-            <div className={styles.heroImage}></div>
         </Flex>
+
+        <div className={styles.heroImage}></div>
 
     </Flex>
   )
