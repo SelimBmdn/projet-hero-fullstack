@@ -16,8 +16,6 @@ export default  async function Home({ searchParams } : HomeProps) {
     muscle : searchParams.muscle || ""
   })
 
-  console.log(allExercises)
-
   const isDataEmpty = !Array.isArray(allExercises) || allExercises.length < 1 || !allExercises
 
 
@@ -28,6 +26,6 @@ export default  async function Home({ searchParams } : HomeProps) {
       <Searchbar />
       <ExercisesList isDataEmpty={isDataEmpty} allExercises={allExercises} />
     </>
-    
+
   )
 }

@@ -30,7 +30,6 @@ const Searchbar = () => {
         if(difficulty.trim()=== "" && muscle.trim() === "" ) {
             return alert('PLease provide some input')
         }
-        alert(difficulty + muscle)
 
         updateSearchParams(difficulty, muscle)
 
